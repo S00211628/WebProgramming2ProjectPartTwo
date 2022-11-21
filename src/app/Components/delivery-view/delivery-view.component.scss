@@ -1,0 +1,117 @@
+@import "../../../main-style.scss";
+
+.centered-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.delivery-manager-container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  max-width: 1000px;
+  max-height: 680px;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  width: 280px;
+  background: white;
+  padding: 42px;
+  border-radius: 8px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+.delivery-items-container {
+  display: flex;
+  flex-grow: 1;
+  padding: 42px;
+  flex-direction: column;
+  border-radius: 8px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  margin-right: auto;
+}
+
+.title {
+  font-family: "Rubik";
+  font-size: 28px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.subtitle{
+font-family: "Rubik";
+  font-size: 15px;
+  letter-spacing: 2px;
+  margin-bottom: 0px;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.delivery-menu {
+  display: flex;
+  flex-direction: column;
+  margin-top: 15px;
+  flex-grow: 1;
+
+  .delivery-menu-items {
+    display: flex;
+
+    align-items: center;
+    padding: 10px 15px;
+    border-radius: 5px;
+    width: 100%;
+    color: #5f5f5f;
+    margin-bottom: 10px;
+
+    &:hover {
+      background: $light;
+    }
+
+    &.is-active {
+      background-color: #cff8ef;
+      color: $dark-green;
+    }
+  }
+}
+
+.delivery {
+  background: white;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 5px;
+  margin-top: 10px;
+
+  &:not(.out-of-stock) {
+    cursor: pointer;
+    transition: box-shadow 0.1s ease, transform 0.1s ease;
+
+    &:hover {
+      box-shadow: 0 0 0 5px #eeeeee;
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
+  }
+  &.out-of-stock {
+    text-decoration: line-through;
+    opacity: .80;
+  }
+}
+
+.delivery-title{
+ background: white;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 5px;
+  margin-top: 10px;
+}
