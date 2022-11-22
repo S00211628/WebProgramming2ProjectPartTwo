@@ -2,22 +2,15 @@
     <div class="delivery-manager-container">
         <div class="sidebar has-background-white">
             <h1 class="title has-text-primary">
-                Deliveries
+                suppliers
             </h1>
-
             <div class="delivery-menu">
-                <a class="delivery-menu-items is-active">
-                    <p>Burns Meat</p>
-                </a>
-                <a class="delivery-menu-items">
-                    <p>Abby Foods</p>
-                </a>
-                <a class="delivery-menu-items">
-                    <p>Burns Meat</p>
+                <a class="delivery-menu-items" *ngFor="let suppliers of suppliers" [routerLink]="['/suppliers', suppliers._id]" routerLinkActive="is-active">
+                    <p>{{suppliers.SupplierName}}</p>
                 </a>
             </div>
 
-            <button class="button is-primary has-text-white">+ New Delivery</button>
+            <button class="button is-primary has-text-white" routerLink="/new-supplier">+ New Delivery</button>
 
         </div>
 
@@ -32,26 +25,17 @@
             </div>
 
             <!-- Delivery Elements -->
-            <div class="delivery">
-                <p>Venison</p>
-                <p>This is a description</p>
-                <p>$12</p>
+            <div class="delivery" *ngFor="let products of products">
+                <p>{{products.title}}</p>
+                <p>{{products.Description}}</p>
+                <p>{{products.Price}}</p>
             </div>
-            <div class="delivery">
-                <p>Venison</p>
-                <p>This is a description</p>
-                <p>$12</p>
+
+            <div routerLink="./new-product" class="circle-add-button button is-primary">
+                <img  src="../../../assets/plus-icon.svg" alt="plus icon">
             </div>
-            <div class="delivery out-of-stock">
-                <p>Venison</p>
-                <p>This is a description</p>
-                <p>$12</p>
-            </div>
-            <div class="delivery">
-                <p>Venison</p>
-                <p>This is a description</p>
-                <p>$12</p>
-            </div>
+         
+           
         </div>
     </div>
 </div>
