@@ -4,7 +4,7 @@ const SupplierSchema = new mongoose.Schema({
   SupplierName: {
     type: String,
     require: true,
-    minlength: true,
+    minlength: 3,
     trim: true,
   },
 });

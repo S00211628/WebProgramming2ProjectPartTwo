@@ -14,6 +14,7 @@ app.use(bodyParser.json());
 // CORS HEADERS MIDDLEWARE
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
+  res.header("Access-Control-Allow-Methods", "GET, POST, HEAD, OPTIONS, PUT, PATCH, DELETE");
   res.header(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept"
@@ -38,7 +39,7 @@ app.get("/suppliers", (req, res) => {
 
 /* 
 Post /deliveries
-Purpose: Cratee a Delivery
+Purpose: Create a Delivery
 */
 app.post("/suppliers", (req, res) => {
   // We want to create a new delivery and return a new delivery doc to the user with and id
@@ -68,7 +69,7 @@ app.patch("/suppliers/:id", (req, res) => {
       $set: req.body,
     }
   ).then(() => {
-    res.sendStatus(200);
+    res.send({'message': 'updated successfully'})
   });
 });
 
@@ -116,7 +117,7 @@ app.get("/suppliers/:supplierId/products/:productsId", (req,res) => {
 
 /*
     GET /suppliers/:productID/products
-    Purpose: Create a new task under a specifc supplier.
+    Purpose: Create a new task under a specific supplier.
 */
 app.post("/suppliers/:supplierId/products", (req, res) => {
   // We want to create a new product for a supplier, specified by SupplierID
@@ -148,7 +149,7 @@ app.patch("/suppliers/:supplierId/products/:productsId", (req, res) => {
       $set: req.body
     }
   ).then(() => {
-    res.sendStatus(200);
+    res.send({ message:'Added successfully!'});
   });
 });
 
@@ -167,6 +168,22 @@ app.delete("/suppliers/:supplierId/products/:productsId", (req, res) => {
   });
 });
 
-app.listen(3000, () => {
-  console.log("server is listening on port 3000");
+/*
+    Delete /suppliers/:productId/products/
+    Purpose: Delete all products that a supplier has
+*/
+
+app.delete("/suppliers/:supplierId/products/", (req, res) => {
+  // We want to delete a specific products (specified by productId)
+  Product.deleteMany({
+    _supplierId: req.params.supplierId,
+  }).then((removedProductDoc) => {
+    res.send(removedProductDoc);
+  });
 });
+
+
+app.listen(3000, () => {
+  console.log("server  is listening on port 3000");
+});
+ 
